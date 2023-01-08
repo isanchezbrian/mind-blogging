@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react'
 import { db } from '../utils/firebase'
 import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
 import Link from 'next/link';
+import { firebaseConfig } from '../utils/firebase.config';
 
+firebaseConfig.initializeApp(firebaseConfig);
 
 export default function Home() {
 
