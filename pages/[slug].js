@@ -3,8 +3,8 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { auth, db } from "../utils/firebase"
 import { toast } from "react-toastify"
-import { arrayUnion, getDoc, Timestamp, updateDoc, doc, onSnapshot } from "firebase/firestore"
-// import moment from "moment"
+import { arrayUnion, getDoc, Timestamp, updateDoc, doc, onSnapshot, snapshot, orderBy, query } from "firebase/firestore"
+import moment from "moment"
 
 export default function Details(){
 
@@ -13,7 +13,7 @@ export default function Details(){
     const [message, setMessage] = useState('');
     const [allMessage, setAllMessages] = useState([]);
 
-    // let commentDate = moment().format('MMMM Do YYYY');
+    let commentDate = moment().format('MMMM Do YYYY');
 
     //Submit a message
     const submitMessage = async () => {
@@ -34,7 +34,7 @@ export default function Details(){
                 avatar: auth.currentUser.photoURL,
                 userName: auth.currentUser.displayName,
                 time: Timestamp.now(),
-                // commentDate,
+                commentDate,
             })
         })
         setMessage("");
@@ -83,9 +83,9 @@ export default function Details(){
                                 <h2>{message.userName}</h2>
                             </div>
                             <h2>{message.message}</h2>
-                            {/* <div className="flex justify-end text-sm font-thin italic">
+                            <div className="flex justify-end text-sm font-thin italic">
                                 <p>{message.commentDate}</p>
-                            </div> */}
+                            </div>
                         </div>
                     ))}
                 </div>
