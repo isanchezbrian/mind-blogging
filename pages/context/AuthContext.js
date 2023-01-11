@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import {auth, db} from '../../utils/firebase'
-import { signInWithEmailAndPassword, createrUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from 'firebase/auth'
 import {doc, getDoc} from 'firebase/firestore'
 
 const AuthContext = React.createContext()
@@ -10,42 +10,47 @@ export function useAuth() {
 }
 
 export function AuthProvider({children}) {
-    const [currentUser, setCurrentUser] = useState(null)
+    const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const userInfo = useRef()
+    console.log(user)
 
-    function signUp (email, password) {
-        createrUserWithEmailAndPassword(auth, email, password)
-        return
-    }
 
-    function login(email, password) {
-        return signInWithEmailAndPassword(auth, email, password)
-    }
-
-    function logout() {
-        return signOut(auth)
-    }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async user => {
-            setCurrentUser(user)
+            if(user){
+            setUser({
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+            })
+        } else {
+            setUser(null)
+        }
             setLoading(false)
         })
-        return unsubscribe
+        return () => unsubscribe()
     }, [])
 
-    const value = {
-        currentUser,
-        login,
-        signUp,
-        logout,
-        userInfo
+    const signup = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+        
     }
 
+    const login = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    const logout = async () => {
+        setUser(null)
+        await signOut(auth)
+    }
+
+
     return(
-        <AuthContext.Provider value={value}>
-            {!loading && children}
+        <AuthContext.Provider value={{ user, login, signup, logout}}>
+            {loading ? null : children}
         </AuthContext.Provider>
     )
 }

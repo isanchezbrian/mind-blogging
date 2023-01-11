@@ -1,37 +1,38 @@
 // import { FcGoogle } from 'react-icons/fc';
 // import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { auth, app} from '../../utils/firebase';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import {toast} from 'react-toastify';
-import Link from 'next/link';
 
-export default function Login(){
+export default function Signup(){
+    const { user, signup } = useAuth()
+    console.log(user)
     const route = useRouter()
-    const { user, login } = useAuth()
     const [data, setData] = useState({
       email: '',
       password: '',
     })
   
-    const handleLogin = async (e) => {
+    const handleSignup = async (e) => {
       e.preventDefault()
   
-      console.log(user)
       try {
-        await login(data.email, data.password)
+        await signup(data.email, data.password)
         route.push('/')
       } catch (err) {
         console.log(err)
-      }
+      }  
+      console.log(data)
+    //   return router.push('/dashboard')
     }
 
     return(
         <div className="shadow-xl mt-30 p-10 text-gray-700 rounded-lg mb-20">
             <div className="">
-                <h3 className="py-4 text-2xl font-medium ">Login to your account</h3>
+                <h3 className="py-4 font-medium text-2xl">Create an account</h3>
                 {/* <button onClick={GoogleLogin} className="text-white bg-gray-700 w-full font-medium rounded-lg flex align-middle p-4 gap-2 duration-300 hover:opacity-75">
                     <FcGoogle className='text-2xl' /> 
                     Sign in with Google
@@ -62,12 +63,9 @@ export default function Login(){
                     }
                     />  
                     <div className='flex gap-2'>
-                        <button className='border rounded-lg flex align-middle mb-4 p-4 bg-gray-700 text-white font-medium duration-300 hover:opacity-75' onClick={handleLogin}>
-                            Sign In
+                        <button className='border rounded-lg flex align-middle mb-4 p-4 bg-gray-700 text-white font-medium duration-300 hover:opacity-75' onClick={handleSignup}>
+                            Create Account
                         </button>
-                    </div>
-                    <div>
-                        <Link href={'/auth/signup'}>New user? Create an account</Link>
                     </div>
             </div>
         </div>

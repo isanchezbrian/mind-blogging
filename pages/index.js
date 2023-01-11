@@ -4,10 +4,15 @@ import { useEffect, useState } from 'react'
 import { db } from '../utils/firebase'
 import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
 import Link from 'next/link';
+import { useAuth } from './context/AuthContext';
+import Login from './auth/login';
+import Dashboard from './dashboard';
 
 export default function Home() {
 
   const [allPosts, setAllPosts] = useState([]);
+  
+  const {currentUser} = useAuth()
 
   const getPosts = async () => {
     const collectionRef = collection(db, 'posts');
@@ -30,6 +35,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* {!currentUser && <Login />} */}
       <div className='my-12 text-lg font-medium'>
         <h2 className='text-2xl'>Latest Posts</h2>
         {allPosts.map(post => 
@@ -38,6 +44,7 @@ export default function Home() {
             <button className='text-sm text-gray-500'>{post.comments?.length > 0 ? post.comments?.length : 0} Comments</button>
           </Link>
         </Message>)}
+        {/* {currentUser && <Message /> } */}
       </div>
     </div>
   )
