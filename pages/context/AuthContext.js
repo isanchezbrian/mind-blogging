@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import {auth, db} from '../../utils/firebase'
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from 'firebase/auth'
-import {doc, getDoc} from 'firebase/firestore'
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
+import {doc, getDoc, setDoc} from 'firebase/firestore'
 
 const AuthContext = React.createContext()
 
@@ -16,6 +16,7 @@ export function AuthProvider({children}) {
     console.log(user)
 
 
+    const auth = getAuth();
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async user => {
@@ -23,7 +24,7 @@ export function AuthProvider({children}) {
             setUser({
                 uid: user.uid,
                 email: user.email,
-                displayName: user.displayName,
+                username: auth.currentUser.displayName,
             })
         } else {
             setUser(null)
@@ -33,9 +34,19 @@ export function AuthProvider({children}) {
         return () => unsubscribe()
     }, [])
 
-    const signup = (email, password) => {
+    const signup = async (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
-        
+        // .then(
+        //     async (result) => {
+        //         console.log(result)
+        //         try {
+        //             const ref = doc(db, 'userInfo', result.user.uid)
+        //             const docRef = await setDoc(ref, {username})
+        //         } catch (error) {
+        //             console.log(error)
+        //         }
+        //     }
+        // )
     }
 
     const login = (email, password) => {

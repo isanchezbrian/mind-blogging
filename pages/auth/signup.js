@@ -9,7 +9,7 @@ import {toast} from 'react-toastify';
 
 export default function Signup(){
     const { user, signup } = useAuth()
-    console.log(user)
+    // console.log(user)
     const route = useRouter()
     const [data, setData] = useState({
       email: '',
@@ -20,7 +20,7 @@ export default function Signup(){
       e.preventDefault()
   
       try {
-        await signup(data.email, data.password)
+        await signup(data.email, data.password )
         route.push('/')
       } catch (err) {
         console.log(err)
@@ -37,6 +37,18 @@ export default function Signup(){
                     <FcGoogle className='text-2xl' /> 
                     Sign in with Google
                 </button> */}
+                    {/* <input 
+                    value={data.username}
+                    className='p-4 flex align-middle w-full border border-b-2 border-gray-700 rounded-lg mb-4'
+                    type='text'
+                    placeholder='Enter Full Name'
+                    onChange={(e) =>
+                        setData({
+                            ...data,
+                            username: e.target.value,
+                        })
+                    }
+                    /> */}
                     <input
                     // onSubmit={handleLogin}
                     value={data.email}
@@ -46,7 +58,7 @@ export default function Signup(){
                     onChange={(e) => 
                         setData({
                             ...data,
-                            email: e.target.value
+                            email: e.target.value,
                         })
                     }
                     />

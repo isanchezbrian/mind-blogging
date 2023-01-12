@@ -54,7 +54,7 @@ export default function Post() {
             timestamp: serverTimestamp(),
             user: user.uid,
             avatar: user.photoURL,
-            username: user.displayName,
+            username: auth.currentUser.displayName,
             day,
         })
         setPost({description: "" });

@@ -14,6 +14,7 @@ export default function Login(){
     const [data, setData] = useState({
       email: '',
       password: '',
+    //   username: '',
     })
   
     const handleLogin = async (e) => {
@@ -66,7 +67,7 @@ export default function Login(){
                             Sign In
                         </button>
                     </div>
-                    <div>
+                    <div className='duration-300 hover:opacity-60'>
                         <Link href={'/auth/signup'}>New user? Create an account</Link>
                     </div>
             </div>

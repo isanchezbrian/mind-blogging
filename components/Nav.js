@@ -20,10 +20,11 @@ export default function Nav() {
                 {user && (
                     <div className='flex items-center gap-6'>
                         <Link href='/post'>
-                        <button className='font-medium bg-orange-500 text-white py-2 px-4 rounded-mg text-sm flex items-center justify-center gap-1 duration-300 hover:opacity-75'>Post<BiMessageAdd className='text-2xl text-white' /></button>
+                        <button className='font-medium bg-orange-500 text-white py-2 px-4 rounded-mg text-sm flex items-center justify-center gap-1 duration-300 hover:opacity-75 rounded-lg'>Post<BiMessageAdd className='text-2xl text-white' /></button>
                         </Link>
                         <Link href='/dashboard'>
-                            <img className='w-12 rounded-full cursor-pointer duration-300 hover:opacity-75' src={user.photoURL} alt='' />
+                            {/* <img className='w-12 rounded-full cursor-pointer duration-300 hover:opacity-75' src={user.photoURL} alt='' /> */}
+                            <button className='font-medium bg-orange-500 text-white py-2 px-4 rounded-mg text-sm flex items-center justify-center gap-1 duration-300 hover:opacity-75 rounded-lg'>Dashboard</button>
                         </Link>
                     </div>
                 )}

@@ -32,7 +32,7 @@ export default function Details(){
             comments: arrayUnion({
                 message,
                 avatar: auth.currentUser.photoURL,
-                userName: auth.currentUser.displayName,
+                username: auth.currentUser.displayName,
                 time: Timestamp.now(),
                 commentDate,
             })
@@ -80,7 +80,7 @@ export default function Details(){
                         <div className="bg-white p-4 my-4 border-2 rounded-lg" key={message.time}>
                             <div className="flex items-center gap-2 mb-4">
                                 <img className="w-10 rounded-full" src={message.avatar} alt='' />
-                                <h2>{message.userName}</h2>
+                                <h2>{message.username}</h2>
                             </div>
                             <h2>{message.message}</h2>
                             <div className="flex justify-end text-sm font-thin italic">
