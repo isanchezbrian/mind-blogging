@@ -9,6 +9,7 @@ import {toast} from 'react-toastify';
 import Link from 'next/link';
 
 export default function Login(){
+    // const [user, loading] = useAuthState(auth);
     const route = useRouter()
     const { user, login } = useAuth()
     const [data, setData] = useState({
@@ -28,6 +29,25 @@ export default function Login(){
         console.log(err)
       }
     }
+
+    // //Sign in with google
+    // const googleProvider = new GoogleAuthProvider();
+    // const GoogleLogin = async () => {
+    //   try {
+    //     const result = await signInWithPopup(auth, googleProvider);
+    //     route.push("/");
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+  
+    // useEffect(() => {
+    //   if (user) {
+    //     route.push("/");
+    //   } else {
+    //     console.log("login");
+    //   }
+    // }, [user]);
 
     return(
         <div className="shadow-xl mt-30 p-10 text-gray-700 rounded-lg mb-20">
