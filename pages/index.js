@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { db } from '../utils/firebase'
 import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
 import Link from 'next/link';
-import { useAuth } from './context/AuthContext';
 import Login from './auth/login';
 import Dashboard from './dashboard';
 
@@ -12,8 +11,6 @@ export default function Home() {
 
   const [allPosts, setAllPosts] = useState([]);
   
-  // const { user } = useAuth()
-
   const getPosts = async () => {
     const collectionRef = collection(db, 'posts');
     const q = query(collectionRef, orderBy('timestamp', 'desc'));
