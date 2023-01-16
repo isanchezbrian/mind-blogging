@@ -1,6 +1,4 @@
-import { data } from "autoprefixer";
-
-export default function Message({children, avatar, username, description, time, date, day, currentUser, displayName, user}){
+export default function Message({children, avatar, username, description, email, day, currentUser, displayName, user, uid, userInfo, auth, id, userCredential}){
 
 
     return(

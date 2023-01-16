@@ -12,7 +12,7 @@ export default function Home() {
 
   const [allPosts, setAllPosts] = useState([]);
   
-  const {user} = useAuth()
+  // const { user } = useAuth()
 
   const getPosts = async () => {
     const collectionRef = collection(db, 'posts');

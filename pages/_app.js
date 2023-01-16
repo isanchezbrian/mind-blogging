@@ -7,11 +7,11 @@ import { AuthProvider } from './context/AuthContext';
 
 export default function App({ Component, pageProps }) {
   return (
-    <AuthProvider>
+    // <AuthProvider>
       <Layout>
         <ToastContainer limit={1}/>
         <Component {...pageProps} />
       </Layout>
-    </AuthProvider>
+    // </AuthProvider>
   )
 }

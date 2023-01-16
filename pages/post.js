@@ -84,7 +84,7 @@ export default function Post() {
         <div className='my-20 p-12 shadow-lg rounded-lg max-w-md mx-auto'>
             <form onSubmit={submitPost}>
                <h1 className='text-2xl font-bold'>
-                {post.hasOwnProperty('id')? 'Edit your post' : 'Creat your own post'}
+                {post.hasOwnProperty('id')? 'Edit your post' : 'Create your own post'}
                 </h1> 
                <div className='py-2'>
                 <h3 className='text-lg font-medium py-2'>Description</h3>

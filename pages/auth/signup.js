@@ -1,6 +1,5 @@
-// import { FcGoogle } from 'react-icons/fc';
-// import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-import { auth, app} from '../../utils/firebase';
+import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { auth, app, db} from '../../utils/firebase';
 import { Router, useRouter } from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect, useState } from 'react';
@@ -8,35 +7,67 @@ import { useAuth } from '../context/AuthContext';
 import {toast} from 'react-toastify';
 
 export default function Signup(){
-    const { user, signup } = useAuth()
+    // const { user, signup } = useAuth()
+    // const [username, setUser] = useState('');
     // console.log(user)
-    const route = useRouter()
-    const [data, setData] = useState({
-      email: '',
-      password: '',
-    })
+    // const route = useRouter()
+    // const [data, setData] = useState({
+    //   email: '',
+    //   password: '',
+    // //   username: '',
+    // })
+
+    // const handleSignup = async (email, password) => {
+    //     return createUserWithEmailAndPassword(auth, email, password)
+    //     .then((userCredential) => {
+    //         const user = userCredential.user;
+    //         set(ref(db, 'users/' + user.uid), {
+    //             username: username,
+    //             email: email,
+    //         })
+    //         alert('user created!')
+    //     })
+    //     .catch((error) => {
+    //         const errorCode = error.code;
+    //         const errorMessage = error.message;
+            
+    //         alert(errorMessage)
+    //     })
+    // }
   
-    const handleSignup = async (e) => {
-      e.preventDefault()
+    // const handleSignup = async (e) => {
+    //   e.preventDefault()
   
-      try {
-        await signup(data.email, data.password )
-        route.push('/')
-      } catch (err) {
-        console.log(err)
-      }  
-      console.log(data)
-    //   return router.push('/dashboard')
-    }
+    //   try {
+    //     await signup(data.email, data.password)
+    //     route.push('/')
+    //   } catch (err) {
+    //     console.log(err)
+    //   }  
+    //   console.log(data)
+    // //   return router.push('/dashboard')
+    // }
+
+    // useEffect(() => {
+    //     const unsubscribe = onAuthStateChanged(auth, async user => {
+    //         if(user){
+    //         setUser({
+    //             uid: user.uid,
+    //             // email: user.email,
+    //             // username,
+    //         })
+    //     } else {
+    //         // setUser(null)
+    //     }
+    //         // setLoading(false)
+    //     })
+    //     return () => unsubscribe()
+    // }, [user])
 
     return(
         <div className="shadow-xl mt-30 p-10 text-gray-700 rounded-lg mb-20">
             <div className="">
                 <h3 className="py-4 font-medium text-2xl">Create an account</h3>
-                {/* <button onClick={GoogleLogin} className="text-white bg-gray-700 w-full font-medium rounded-lg flex align-middle p-4 gap-2 duration-300 hover:opacity-75">
-                    <FcGoogle className='text-2xl' /> 
-                    Sign in with Google
-                </button> */}
                     {/* <input 
                     value={data.username}
                     className='p-4 flex align-middle w-full border border-b-2 border-gray-700 rounded-lg mb-4'

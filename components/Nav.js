@@ -3,6 +3,7 @@ import {BiMessageAdd} from 'react-icons/bi';
 import {auth} from '../utils/firebase';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import {ImBubbles} from 'react-icons/im'
+// import '../assets/images/default-user-orange.jpeg/';
 
 export default function Nav() {
     const [user, loading] = useAuthState(auth);
@@ -23,8 +24,10 @@ export default function Nav() {
                         <button className='font-medium bg-orange-500 text-white py-2 px-4 rounded-mg text-sm flex items-center justify-center gap-1 duration-300 hover:opacity-75 rounded-lg'>Post<BiMessageAdd className='text-2xl text-white' /></button>
                         </Link>
                         <Link href='/dashboard'>
-                            {/* <img className='w-12 rounded-full cursor-pointer duration-300 hover:opacity-75' src={user.photoURL} alt='' /> */}
-                            <button className='font-medium bg-orange-500 text-white py-2 px-4 rounded-mg text-sm flex items-center justify-center gap-1 duration-300 hover:opacity-75 rounded-lg'>Dashboard</button>
+                            <div className='flex gap-4'>
+                            {/* <button className='font-medium bg-orange-500 text-white py-3 px-4 rounded-mg text-sm flex items-center justify-center gap-1 duration-300 hover:opacity-75 rounded-lg'>Dashboard</button> */}
+                            <img className='w-12 rounded-full cursor-pointer duration-300 hover:opacity-75' src={user.photoURL} alt='' />
+                            </div>
                         </Link>
                     </div>
                 )}
