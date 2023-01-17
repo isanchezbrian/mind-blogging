@@ -10,7 +10,7 @@ export default function Nav() {
     return(
         <nav className="flex justify-between items-center py-10">
             <Link href='/'>
-                <button className='text-lg font-medium flex gap-2'>Blogging Your Mind <ImBubbles className='text-2xl' /></button>
+                <button className='text-lg font-medium flex gap-2'>Mind Blogging<ImBubbles className='text-2xl' /></button>
             </Link>
             <ul className='flex items-center gap-10'>
                 {!user && (
@@ -24,10 +24,7 @@ export default function Nav() {
                         <button className='font-medium bg-orange-500 text-white py-2 px-4 rounded-mg text-sm flex items-center justify-center gap-1 duration-300 hover:opacity-75 rounded-lg'>Post<BiMessageAdd className='text-2xl text-white' /></button>
                         </Link>
                         <Link href='/dashboard'>
-                            <div className='flex gap-4'>
-                            {/* <button className='font-medium bg-orange-500 text-white py-3 px-4 rounded-mg text-sm flex items-center justify-center gap-1 duration-300 hover:opacity-75 rounded-lg'>Dashboard</button> */}
                             <img className='w-12 rounded-full cursor-pointer duration-300 hover:opacity-75' src={user.photoURL} alt='' />
-                            </div>
                         </Link>
                     </div>
                 )}
